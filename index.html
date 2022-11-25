@@ -42,11 +42,12 @@
                 <div class="row h-100 justify-content-center">
                     <div class="col-10 d-flex">
                         <!-- ASIDE USER CONTAINER -->
-                        <aside id="users-container">
-                            <div class="navbar_users users p-2 flex-shrink-0">
+                        <aside id="users-container" class="d-flex flex-column my-overflow">
 
+                            <!-- NAVBAR -->
+                            <div class="navbar_users users p-2 flex-shrink-0">
                                 <div class="card_ w-100 d-flex align-items-baseline gap-1">
-                                    <div class="img-card-container rounded-5 overflow-hidden">
+                                    <div class="img-card-container rounded-5 overflow-hidden me-2">
                                         <img src="img/avatar_io.jpg" alt="" class="">
                                     </div>
                                     <h5 class="flex-fill text-capitalize">name</h5>
@@ -57,8 +58,52 @@
                             </div>
 
 
-                            <ul id="users-list" class="my-overflow">
+                            <!-- NOTIFICATION -->
+                            <div id="notifications" class="bunner-card w-100 d-flex align-items-center gap-2 p-3">
+                                <div
+                                    class="img-card-container overflow-hidden bg-light rounded-5 ratio-1x1 flex-shrink-0">
+                                    <!-- bell -->
+                                    <i class="fa-solid fa-bell-slash m-3 "></i>
+                                </div>
 
+                                <div class="bunner-card_info flex-fill align-self-start ">
+                                    <h5 class="text-capitalize m-0">ricevi notifiche di nuovi messaggi</h5>
+                                    <small>
+                                        <a class="subtitle" href="#">ricevi notifiche desktop</a>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- SEARCH -->
+                            <div id="search" class="p-2 d-flex justify-content-between align-items-center gap-4 px-2">
+                                <!-- deve funzionare con enter -->
+                                <form action="" class="flex-fill rounded-1 overflow-hidden d-flex ">
+                                    <button class="search-btn p-1 bg-white">
+                                        <i class="fa-solid fa-magnifying-glass px-4"></i>
+                                    </button>
+                                    <input type="text" name="search" id="search"
+                                        placeholder="search or start a new chat" class="w-100 px-3 border-0 bg-white">
+                                </form>
+                            </div>
+
+                            <!-- CHAT LIST-->
+                            <ul id="users-list" class="my-overflow flex-fill m-0 p-0">
+
+                                <!-- user list element___________________________________________________________v-for -->
+                                <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5 overflow-hidden  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>
                             </ul>
 
                         </aside>
@@ -67,8 +112,9 @@
 
                             <!-- TOP NAVBAR -->
                             <div class=" navbar-top_chat p-2 flex-shrink-0">
+
                                 <div class="card_ w-100 d-flex align-items-center gap-1">
-                                    <div class="img-card-container rounded-5 overflow-hidden">
+                                    <div class="img-card-container rounded-5 overflow-hidden  me-2">
                                         <img src="img/avatar_1.jpg" alt="" class="">
                                     </div>
 
@@ -88,12 +134,14 @@
                             </div>
 
                             <!-- BOTTOM NAVBAR -->
-                            <div class="navbar-bottom_chat p-2 d-flex justify-content-between align-items-center gap-4 px-4">
+                            <div
+                                class="navbar-bottom_chat p-2 d-flex justify-content-between align-items-center gap-4 px-4">
 
                                 <i class="fa-regular fa-face-smile"></i>
                                 <!-- deve funzionare con enter -->
                                 <form action="" class="flex-fill rounded-2 overflow-hidden">
-                                    <input type="text" name="message" id="message" placeholder="write a message" class="w-100 p-3 border-0">
+                                    <input type="text" name="message" id="message" placeholder="write a message"
+                                        class="w-100 p-3 border-0">
                                 </form>
 
                                 <i class="fa-solid fa-microphone"></i>
