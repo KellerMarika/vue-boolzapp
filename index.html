@@ -51,7 +51,7 @@
                   <div class="img-card-container rounded-5 overflow-hidden me-2">
                     <img src="img/avatar_io.jpg" alt="" class="">
                   </div>
-                  <h5 class="flex-fill text-capitalize">name</h5>
+                  <h5 class="flex-fill text-capitalize">keller marika</h5>
                   <i class="fa-solid fa-circle-notch"></i>
                   <i class="fa-solid fa-message"></i>
                   <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -96,20 +96,25 @@
                 <!--    v-for="(user,i) in usersList" -->
 
                 <!-- user list element___________________________________________________________v-for -->
-                <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+                <li class="user-card w-100 d-flex align-items-center gap-1 p-2"
+                    v-for="(user,i) in users">
 
                   <div class="img-card-container rounded-5 overflow-hidden me-2">
                     <!--  -->
-                    <img src="img/avatar_1.jpg" alt="" class="">
+                    <img :src="`img/avatar${user.avatar}.jpg`" :alt="`${user.name}'s avatar image`" class="">
                   </div>
 
                   <div class="card_info flex-fill align-self-start ">
-                    <h5 class="text-capitalize m-0">name</h5>
-                    <small class="subtitle"> ultimo messaggio: {{
-                      }}</small>
+                    <h5 class="text-capitalize m-0">
+                      {{user.name}}</h5>
+                    <small class="subtitle"> ultimo messaggio:
+                      {{user.messages[user.messages.length-1].message}}</small>
                   </div>
 
-                  <small class="subtitle align-self-start"> ora {{ }}</small>
+                  <small class="subtitle align-self-start">
+                    <!-- finalmente qualcosa che mi piace -->
+                    {{ extractTimeFromDate(user.messages[user.messages.length-1].date)}}
+                  </small>
                 </li>
               </ul>
             </aside>
