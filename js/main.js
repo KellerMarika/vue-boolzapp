@@ -1,20 +1,20 @@
-/* import * as usersList from "./usersList.js"; ___________________perchè?*/
 
-import { usersList } from "./usersList.js"
+ import usersList from "./usersList.js"
+
 const { createApp } = Vue
 
 createApp({
     data() {
         return {
-
+            users: usersList,
         }
+
     },
     methods: {
 
     },
 
     mounted() {
-        console.log(usersList)
-      /*   console.log(usersList.default) ___________________perchè? */
+
     },
 }).mount("#app")

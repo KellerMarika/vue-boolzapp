@@ -1,5 +1,4 @@
-/* export default */
-const usersList= [{
+export default [{
     name: 'Michele',
     avatar: '_1',
     visible: true,
@@ -79,4 +78,3 @@ const usersList= [{
     ],
 },
 ];
-export{usersList};
