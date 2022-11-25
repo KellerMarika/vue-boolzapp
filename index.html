@@ -36,18 +36,18 @@
         <!-- bg -->
         <div id="max-container" class="container-fluid vh-100 d-flex">
 
-            <!-- MAIN CONTAINER----------------------------------------- my-overflow  -->
-            <div id="main-container" class="my-4 flex-fill my-overflow">
+            <!-- MAIN CONTAINER-----------------------------------------   -->
+            <div id="main-container" class="my-4 flex-fill">
 
                 <div class="row h-100 justify-content-center">
                     <div class="col-10 d-flex">
                         <!-- ASIDE USER CONTAINER -->
-                        <aside id="users-container" class="d-flex flex-column my-overflow">
+                        <aside id="users-container" class="d-flex flex-column">
 
                             <!-- NAVBAR -->
                             <div class="navbar_users users p-2 flex-shrink-0">
                                 <div class="card_ w-100 d-flex align-items-baseline gap-1">
-                                    <div class="img-card-container rounded-5 overflow-hidden me-2">
+                                    <div class="img-card-container rounded-5 me-2">
                                         <img src="img/avatar_io.jpg" alt="" class="">
                                     </div>
                                     <h5 class="flex-fill text-capitalize">name</h5>
@@ -61,7 +61,7 @@
                             <!-- NOTIFICATION -->
                             <div id="notifications" class="bunner-card w-100 d-flex align-items-center gap-2 p-3">
                                 <div
-                                    class="img-card-container overflow-hidden bg-light rounded-5 ratio-1x1 flex-shrink-0">
+                                    class="img-card-container bg-light rounded-5 ratio-1x1 flex-shrink-0">
                                     <!-- bell -->
                                     <i class="fa-solid fa-bell-slash m-3 "></i>
                                 </div>
@@ -77,7 +77,7 @@
                             <!-- SEARCH -->
                             <div id="search" class="p-2 d-flex justify-content-between align-items-center gap-4 px-2">
                                 <!-- deve funzionare con enter -->
-                                <form action="" class="flex-fill rounded-1 overflow-hidden d-flex ">
+                                <form action="" class="flex-fill rounded-1 d-flex ">
                                     <button class="search-btn p-1 bg-white">
                                         <i class="fa-solid fa-magnifying-glass px-4"></i>
                                     </button>
@@ -87,12 +87,12 @@
                             </div>
 
                             <!-- CHAT LIST-->
-                            <ul id="users-list" class="my-overflow flex-fill m-0 p-0">
+                            <ul id="users-list" class=" flex-fill overflow-auto m-0 p-0">
 
                                 <!-- user list element___________________________________________________________v-for -->
                                 <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
 
-                                    <div class="img-card-container rounded-5 overflow-hidden  me-2">
+                                    <div class="img-card-container rounded-5  me-2">
                                         <!--  -->
                                         <img src="img/avatar_1.jpg" alt="" class="">
                                     </div>
@@ -104,17 +104,142 @@
 
                                     <small class="subtitle align-self-start"> ora {{ }}</small>
                                 </li>
-                            </ul>
 
+                                <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+                                <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>      <li class="user-card w-100 d-flex align-items-center gap-1 p-2">
+
+                                    <div class="img-card-container rounded-5  me-2">
+                                        <!--  -->
+                                        <img src="img/avatar_1.jpg" alt="" class="">
+                                    </div>
+
+                                    <div class="card_info flex-fill align-self-start ">
+                                        <h5 class="text-capitalize m-0">name</h5>
+                                        <small class="subtitle"> ultimo accesso oggi alle: {{ }}</small>
+                                    </div>
+
+                                    <small class="subtitle align-self-start"> ora {{ }}</small>
+                                </li>
+                                <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+                                
+
+                            </ul>
                         </aside>
 
-                        <div id="chat-container" class="flex-fill d-flex flex-column my-overflow">
+                        <!-- CHAT CONTAINER -->
+                        <div id="chat-container" class="flex-fill d-flex flex-column overflow-auto">
 
                             <!-- TOP NAVBAR -->
                             <div class=" navbar-top_chat p-2 flex-shrink-0">
 
                                 <div class="card_ w-100 d-flex align-items-center gap-1">
-                                    <div class="img-card-container rounded-5 overflow-hidden  me-2">
+                                    <div class="img-card-container rounded-5 me-2">
                                         <img src="img/avatar_1.jpg" alt="" class="">
                                     </div>
 
@@ -130,7 +255,7 @@
                             </div>
 
                             <!-- MAIN CHAT -->
-                            <div id="main-chat" class="flex-fill my-overflow">
+                            <div id="main-chat" class="flex-fill">
                             </div>
 
                             <!-- BOTTOM NAVBAR -->
@@ -139,7 +264,7 @@
 
                                 <i class="fa-regular fa-face-smile"></i>
                                 <!-- deve funzionare con enter -->
-                                <form action="" class="flex-fill rounded-2 overflow-hidden">
+                                <form action="" class="flex-fill rounded-2">
                                     <input type="text" name="message" id="message" placeholder="write a message"
                                         class="w-100 p-3 border-0">
                                 </form>
