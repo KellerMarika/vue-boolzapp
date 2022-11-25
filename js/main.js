@@ -11,27 +11,32 @@ createApp({
 
     },
     methods: {
-        /* FUNZIONE RECUPERO ORA DA STRINGA data + ora
-           trasforma stringa in array (spazio)
-           rimuovi il primo dato(splice(0,1))?
-           recupera quel dato come variabile
-           rimuovi ultimi 2 caratteri dall'unico elemento
-       */
+        // FUNZIONE RECUPERO ORA DA STRINGA (data + ora) 
+        /**
+         * 
+         *  
+         * 
+         * @param {*} dateString  formato dateStringa esempio: ""yy/yy/yyyy xx:xx:yy"""
+         * @returns "xx/xx"
+         */
+        extractTimeFromDate(dateString) {
+            //console.log(dateString)
 
-        extractTimeFromDate(string) {
-            console.log(string)
-
-            let dateArray = string.split(" ")
+            let dateArray = dateString.split(" ")
+            //prima trasforma la stringa in un array di 2 elementi [data,ora](il disclaimer è lo spazio(" "))
             //console.log(dateArray)
             dateArray = dateArray.pop().split("")
+            //pop recupera come variabile il primo elemento dell'array"00:00:00"
+            //split trasforma di nuovo in array la variabile ("lettere" disclaimenr(""))
             //console.log(dateArray)
+            //ridefinisco la lunghezza dell'array ottenuto, escludendo gli ultimi caratteri indesiderati (:secondi)
             dateArray.length = 5
             //console.log(dateArray)
-            const date = dateArray.join("")
-            //console.log(date)
-            return date
-
-
+            const time = dateArray.join("")
+            //join concatena gli elementi di un array in un unico valore di tipo stringa che racchiudo nella variabile time
+            //console.log(time)
+            return time
+            //finalmente qualcosa che mi piace 
         }
     },
 
