@@ -99,7 +99,7 @@
                 <li class="user-card w-100 d-flex align-items-center gap-1 p-2"
                     v-for="(user,i) in users"
                     @click=" checkActiveIndex(i)"
-                    :class="(i == userActiveIdex) ? 'active' : ''">
+                    :class="(i == userActiveIndex) ? 'active' : ''">
 
                   <div class="img-card-container rounded-5 overflow-hidden me-2">
                     <!--  -->
@@ -131,7 +131,7 @@
               <div class=" navbar-top_chat p-3 flex-shrink-0  d-flex align-items-center gap-1  ">
 
                 <div class="no chatting_card d-flex align-items-center gap-1"
-                    v-if="userActiveIdex==-1 ">
+                    v-if="userActiveIndex==-1 ">
 
                   <div class="card_info align-self-start">
                     <h5 class="text-capitalize m-0">
@@ -145,14 +145,14 @@
                     v-else>
                   <div class="img-card-container  rounded-5 overflow-hidden me-2">
                     <img
-                        :src="`img/avatar${users[userActiveIdex].avatar}.jpg`"
-                        :alt="`${users[userActiveIdex].name}'s avatar image`">
+                        :src="`img/avatar${users[userActiveIndex].avatar}.jpg`"
+                        :alt="`${users[userActiveIndex].name}'s avatar image`">
                   </div>
 
                   <div class="card_info align-self-start">
-                    <h5 class="text-capitalize m-0">{{users[userActiveIdex].name}}</h5>
+                    <h5 class="text-capitalize m-0">{{users[userActiveIndex].name}}</h5>
                     <small class="dark-grey_color"> ultimo accesso oggi alle ore:
-                      {{extractTimeFromDate(users[userActiveIdex].messages[users[userActiveIdex].messages.length-1].date)}}</small>
+                      {{extractTimeFromDate(users[userActiveIndex].messages[users[userActiveIndex].messages.length-1].date)}}</small>
                   </div>
                 </div>
 
@@ -173,14 +173,14 @@
                 <div class="message-container d-flex flex-column gap-4">
 
                   <!-- nessuna chart attiva -->
-                  <div v-if="userActiveIdex == -1"
+                  <div v-if="userActiveIndex == -1"
                       class="message rounded-3 d-flex">
                   </div>
 
                   <!-- CHAT ATTIVA -->
                   <div class="message rounded-3 d-flex"
-                      v-else="userActiveIdex !== -1"
-                      v-for="(activeUserMessages,i) in users[userActiveIdex].messages"
+                      v-else="userActiveIndex !== -1"
+                      v-for="(activeUserMessages,i) in users[userActiveIndex].messages"
                       :class= "activeUserMessages.status !== 'sent' ? 'personal' : '' ">
                     <p class=" px-4 py-2 ">{{activeUserMessages.message}}</p>
                     <small
@@ -196,7 +196,12 @@
                 <i class="fa-regular fa-face-smile dark-grey_color"></i>
                 <!-- deve funzionare con enter -->
                 <form action="" class="flex-fill rounded-2" @submit.prevent="sendNewMessage">
-                  <input type="text" name="message" id="message"placeholder="scrivi qui il tuo messaggio"class="w-100 p-3 border-0"
+
+                  <input 
+                  v-if="userActiveIndex == -1" type="text" name="message" id="message"placeholder="seleziona un amico con cui chattare!"class="w-100 p-3 border-1 rounded-2" disabled>
+
+                  <input 
+                  v-else type="text" name="message" id="message"placeholder="scrivi qui il tuo messaggio"class="w-100 p-3 border-0  rounded-2"
                   v-model="newRecivedMessage.message">
                 </form>
 

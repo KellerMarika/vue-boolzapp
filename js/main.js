@@ -7,7 +7,7 @@ createApp({
     data() {
         return {
             users: usersList,
-            userActiveIdex: -1,
+            userActiveIndex: -1,
             newRecivedMessage: {
                 date: "",
                 message: "",
@@ -48,9 +48,9 @@ createApp({
 
         checkActiveIndex(currentIndex) {
             //console.log(currentIndex);
-            this.userActiveIdex = currentIndex;
-            console.log(this.userActiveIdex);
-            console.log("original messages",this.users[this.userActiveIdex].messages);
+            this.userActiveIndex = currentIndex;
+            console.log(this.userActiveIndex);
+            console.log("original messages",this.users[this.userActiveIndex].messages);
         },
 
         /**FUNZIONE GENERICA RECUPERO DATA E ORA REALE FORMATO:   yy/yy/yyyy xx:xx
@@ -82,17 +82,17 @@ createApp({
 
         sendNewMessage() {
             this.newRecivedMessage.date = this.getNewMessageDate();
-            console.log(this.newRecivedMessage);
-            //console.log(this.users[this.userActiveIdex].messages);
-            this.users[this.userActiveIdex].messages.push({          
+            //console.log(this.newRecivedMessage);
+            //console.log(this.users[this.userActiveIndex].messages);
+            this.users[this.userActiveIndex].messages.push({          
                 ...this.newRecivedMessage});
-                
-            console.log(this.users[this.userActiveIdex].messages);
+
+            console.log(this.users[this.userActiveIndex].messages);
         }
     },
 
     mounted() {
-        console.log(this.userActiveIdex);
+        console.log(this.userActiveIndex);
         console.log(this.newRecivedMessage);
         console.log(this.getNewMessageDate());
 
