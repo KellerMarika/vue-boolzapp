@@ -11,7 +11,7 @@ createApp({
             newRecivedMessage: {
                 date: "",
                 message: "",
-                status: "'received'"
+                status: 'received'
             }
         }
     },
@@ -50,6 +50,7 @@ createApp({
             //console.log(currentIndex);
             this.userActiveIdex = currentIndex;
             console.log(this.userActiveIdex);
+            console.log("original messages",this.users[this.userActiveIdex].messages);
         },
 
         /**FUNZIONE GENERICA RECUPERO DATA E ORA REALE FORMATO:   yy/yy/yyyy xx:xx
@@ -69,22 +70,32 @@ createApp({
             a.length = 16
             //ricongiungo i caratteri in un'unica stringa per poi disgiungerli all'altezza dello spazio (" ") creando un array  di "date" + "time"
             a = a.join("").split(" ");
-            console.log(a);
+            //console.log(a);
             //ora modifico solo l'elemento 0 (date) dell'array, separo i caratteri all'altezza dei trattini che vengono eliminati, inverto l'ordine di apparizione dei 3 elementi e li ricongiungo attraverso la "/".
             a[0] = a[0].split("-").reverse().join("/");
-            console.log(a);
-            return  a
+
+            //creo una variabile che continene una stringa che è  frutto della concatenazione dei valori dell'array a
+            const newDate = a[0] + " " + a[1]
+            //console.log(a);
+            return newDate
         },
 
         sendNewMessage() {
+            this.newRecivedMessage.date = this.getNewMessageDate();
             console.log(this.newRecivedMessage);
+            //console.log(this.users[this.userActiveIdex].messages);
+            this.users[this.userActiveIdex].messages.push({          
+                ...this.newRecivedMessage});
+                
+            console.log(this.users[this.userActiveIdex].messages);
         }
     },
 
     mounted() {
         console.log(this.userActiveIdex);
         console.log(this.newRecivedMessage);
-        console.log(this.getNewMessageDate())
+        console.log(this.getNewMessageDate());
+
 
 
     },
