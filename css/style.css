@@ -1,0 +1,50 @@
+
+:root{
+    --secondary_color: #b1b1b1;
+}
+#main-container>.row * {
+/*     border: 1px solid red; */
+} 
+
+#max-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background-color: #009688;
+    z-index: -1;
+}
+
+.my-overflow{
+    overflow: 0 auto;
+}
+
+#users-container {
+    width: 500px;
+}
+
+[class*="navbar"] {
+height: 80px;
+    background-color: #eaeaea;
+}
+
+img {
+   height: 60px;
+}
+
+i {
+    font-size: 1.4rem;
+    margin: 5px;
+    color: var(--secondary_color);
+}
+
+
+ #chat-container{
+    background-image: url(../img/mine.jpg);
+}
+ 
+#main-chat{
+    border: 1px solid greenyellow !important;
+}
