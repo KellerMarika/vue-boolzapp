@@ -37,7 +37,7 @@ i {
 
 /**** VUE  CLASSES ********************/
 /* sent */
-.message.sent {
+.message.personal {
     background-color: #d5f9ba;
     align-self: flex-end;
 }
@@ -110,6 +110,3 @@ i {
     max-width: 80%;
 }
 
-.navbar-top_chat *{
-    border: 1px solid red;
-}

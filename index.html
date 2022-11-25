@@ -103,9 +103,9 @@
 
                   <div class="img-card-container rounded-5 overflow-hidden me-2">
                     <!--  -->
-                    <img 
-                    :src="`img/avatar${user.avatar}.jpg`" 
-                    :alt="`${user.name}'s avatar image`" class="">
+                    <img
+                        :src="`img/avatar${user.avatar}.jpg`"
+                        :alt="`${user.name}'s avatar image`" class="">
                   </div>
 
                   <div class="card_info flex-fill align-self-start ">
@@ -144,15 +144,15 @@
                 <div class="chatting_card  d-flex align-items-center gap-1"
                     v-else>
                   <div class="img-card-container  rounded-5 overflow-hidden me-2">
-                    <img 
-                    :src="`img/avatar${users[userActiveIdex].avatar}.jpg`" 
-                    :alt="`${users[userActiveIdex].name}'s avatar image`">
+                    <img
+                        :src="`img/avatar${users[userActiveIdex].avatar}.jpg`"
+                        :alt="`${users[userActiveIdex].name}'s avatar image`">
                   </div>
 
                   <div class="card_info align-self-start">
                     <h5 class="text-capitalize m-0">{{users[userActiveIdex].name}}</h5>
                     <small class="dark-grey_color"> ultimo accesso oggi alle ore:
-                       {{extractTimeFromDate(users[userActiveIdex].messages[users[userActiveIdex].messages.length-1].date)}}</small>
+                      {{extractTimeFromDate(users[userActiveIdex].messages[users[userActiveIdex].messages.length-1].date)}}</small>
                   </div>
                 </div>
 
@@ -171,12 +171,20 @@
               <div id="main-chat" class="flex-fill overflow-auto">
 
                 <div class="message-container d-flex flex-column gap-4">
-                  <!-- user list element___________________________________________________________v-for  -->
-                  <!--  v- if  sent-->
-                  <!-- v-if se non ci sono messaggi -->
-                  <div class="message rounded-3 d-flex">
-                    <p class=" px-4 py-2 ">hello!</p>
-                    <small class="subtitle align-self-end flex-fill text-end">00:00</small>
+
+                  <!-- nessuna chart attiva -->
+                  <div v-if="userActiveIdex == -1"
+                      class="message rounded-3 d-flex">
+                  </div>
+
+                  <!-- CHAT ATTIVA -->
+                  <div class="message rounded-3 d-flex"
+                      v-else="userActiveIdex !== -1"
+                      v-for="(activeUserMessages,i) in users[userActiveIdex].messages"
+                      :class= "activeUserMessages.status !== 'sent' ? 'personal' : '' ">
+                    <p class=" px-4 py-2 ">{{activeUserMessages.message}}</p>
+                    <small
+                        class="subtitle align-self-end flex-fill text-end pe-2">{{extractTimeFromDate(activeUserMessages.date)}}</small>
                   </div>
                 </div>
 

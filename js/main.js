@@ -49,6 +49,7 @@ createApp({
     },
 
     mounted() {
+        console.log(this.userActiveIdex)
 
 
     },
