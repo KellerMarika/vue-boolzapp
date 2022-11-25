@@ -86,7 +86,7 @@
                     <i class="fa-solid fa-magnifying-glass px-4"></i>
                   </button>
                   <input type="text" name="search" id="search"
-                      placeholder="search or start a new chat"
+                      placeholder="ricerca o inizia una nuova chat"
                       class="w-100 px-3 border-0 bg-white">
                 </form>
               </div>
@@ -195,10 +195,9 @@
 
                 <i class="fa-regular fa-face-smile dark-grey_color"></i>
                 <!-- deve funzionare con enter -->
-                <form action="" class="flex-fill rounded-2">
-                  <input type="text" name="message" id="message"
-                      placeholder="write a message"
-                      class="w-100 p-3 border-0">
+                <form action="" class="flex-fill rounded-2" @submit.prevent="sendNewMessage">
+                  <input type="text" name="message" id="message"placeholder="scrivi qui il tuo messaggio"class="w-100 p-3 border-0"
+                  v-model="newRecivedMessage.message">
                 </form>
 
                 <i class="fa-solid fa-microphone dark-grey_color"></i>
