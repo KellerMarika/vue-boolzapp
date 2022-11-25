@@ -97,11 +97,15 @@
 
                 <!-- user list element___________________________________________________________v-for -->
                 <li class="user-card w-100 d-flex align-items-center gap-1 p-2"
-                    v-for="(user,i) in users">
+                    v-for="(user,i) in users"
+                    @click=" checkActiveIndex(i)"
+                    :class="(i == userActiveIdex) ? 'active' : ''">
 
                   <div class="img-card-container rounded-5 overflow-hidden me-2">
                     <!--  -->
-                    <img :src="`img/avatar${user.avatar}.jpg`" :alt="`${user.name}'s avatar image`" class="">
+                    <img 
+                    :src="`img/avatar${user.avatar}.jpg`" 
+                    :alt="`${user.name}'s avatar image`" class="">
                   </div>
 
                   <div class="card_info flex-fill align-self-start ">
@@ -124,23 +128,42 @@
             <div id="chat-container" class="flex-fill d-flex flex-column">
 
               <!-- TOP NAVBAR -->
-              <div class=" navbar-top_chat  p-3 flex-shrink-0 ">
+              <div class=" navbar-top_chat p-3 flex-shrink-0  d-flex align-items-center gap-1  ">
 
-                <div class="card_ w-100 d-flex align-items-center gap-1">
+                <div class="no chatting_card d-flex align-items-center gap-1"
+                    v-if="userActiveIdex==-1 ">
+
+                  <div class="card_info align-self-start">
+                    <h5 class="text-capitalize m-0">
+                      Ultima chat attiva:{{}} </h5>
+                    <small class="dark-grey_color">
+                      ultimo messaggio: {{ }}</small>
+                  </div>
+                </div>
+
+                <div class="chatting_card  d-flex align-items-center gap-1"
+                    v-else>
                   <div class="img-card-container  rounded-5 overflow-hidden me-2">
-                    <img src="img/avatar_1.jpg" alt="" class="">
+                    <img 
+                    :src="`img/avatar${users[userActiveIdex].avatar}.jpg`" 
+                    :alt="`${users[userActiveIdex].name}'s avatar image`">
                   </div>
 
-                  <div class="card_info flex-fill align-self-start ">
-                    <h5 class="text-capitalize m-0">name</h5>
-                    <small class="dark-grey_color"> ultimo accesso oggi alle: {{
-                      }}</small>
+                  <div class="card_info align-self-start">
+                    <h5 class="text-capitalize m-0">{{users[userActiveIdex].name}}</h5>
+                    <small class="dark-grey_color"> ultimo accesso oggi alle ore:
+                       {{extractTimeFromDate(users[userActiveIdex].messages[users[userActiveIdex].messages.length-1].date)}}</small>
                   </div>
+                </div>
 
+                <!-- icons -->
+                <div class="top-chat icons-container flex-fill text-end">
                   <i class="fa-solid fa-magnifying-glass"></i>
                   <i class="fa-solid fa-paperclip"></i>
                   <i class="fa-solid fa-ellipsis-vertical"></i>
                 </div>
+
+
               </div>
 
               <!-- MAIN CHAT -->

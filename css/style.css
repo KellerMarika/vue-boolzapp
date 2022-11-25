@@ -42,6 +42,9 @@ i {
     align-self: flex-end;
 }
 
+.user-card.active{
+    background-color:#e9ebeb;
+}
 /**** MAIN ********************/
 
 #max-container::before {
@@ -107,3 +110,6 @@ i {
     max-width: 80%;
 }
 
+.navbar-top_chat *{
+    border: 1px solid red;
+}

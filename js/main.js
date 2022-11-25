@@ -7,15 +7,14 @@ createApp({
     data() {
         return {
             users: usersList,
+            userActiveIdex: -1,
         }
 
     },
     methods: {
-        // FUNZIONE RECUPERO ORA DA STRINGA (data + ora) 
-        /**
-         * 
-         *  
-         * 
+
+        //**/ FUNZIONE RECUPERO ORA DA STRINGA (data + ora) ********//
+        /** 
          * @param {*} dateString  formato dateStringa esempio: ""yy/yy/yyyy xx:xx:yy"""
          * @returns "xx/xx"
          */
@@ -37,10 +36,20 @@ createApp({
             //console.log(time)
             return time
             //finalmente qualcosa che mi piace 
-        }
+        },
+
+        //** FUNZIONE RECUPERO INDEX (al click) **************//
+
+        checkActiveIndex(currentIndex) {
+            //console.log(currentIndex);
+            this.userActiveIdex = currentIndex;
+            console.log(this.userActiveIdex)
+        },
+
     },
 
     mounted() {
+
 
     },
 }).mount("#app")
