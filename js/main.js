@@ -13,8 +13,8 @@ createApp({
                 date: "",
                 message: "",
                 status: "",
-
             }
+            
         }
     },
     methods: {
@@ -83,7 +83,7 @@ createApp({
 
 
 
-        //** FUNZIONE CREATE MESSAGE **************//
+        //** FUNZIONE GENERICA CREATE MESSAGE **************//
         createMessage(message, status) {
             this.newFriendMessageObj.message = message
             this.newFriendMessageObj.date = this.getNewMessageDate();
@@ -93,14 +93,22 @@ createApp({
         //** FUNZIONE SEND PERSONAL MESSAGE AND GAIN AUTOMATIC REPLAY **************//
 
         sendNewPersonalMessageAndReplay() {
-            const lola = this.createMessage(this.newPersonalMessage, "recived");
+            this.createMessage(this.newPersonalMessage, "recived");
             //console.log(this.newFriendMessageObj);
             //console.log(this.friends[this.activeFriendIndex].messages);
             this.friends[this.activeFriendIndex].messages.push({
                 ...this.newFriendMessageObj,
             });
-            console.log(this.friends[this.activeFriendIndex].messages);
-            //set interval di un secondo (funzione sent)
+            //console.log(this.friends[this.activeFriendIndex].messages);
+           
+            //vorrei creare un animazione coi pallini come se stesse l'altro utente stesse digitando____________________________________
+            setTimeout(() => {
+                this.createMessage("ok", "sent");
+                this.friends[this.activeFriendIndex].messages.push({
+                    ...this.newFriendMessageObj,
+                });
+            }, 1500);
+            console.log("daje", this.friends[this.activeFriendIndex].messages);
         },
     },
 
