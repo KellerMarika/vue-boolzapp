@@ -13,8 +13,28 @@ createApp({
                 date: "",
                 message: "",
                 status: "",
-            }
-            
+            },
+            possibleReplies: [
+
+                "Non si finisce mai di imparare",
+                "L’importante è bere tanta acqua",
+                "Francamente me ne infischio",
+                "Non è tanto il caldo quanto l’umidità",
+                "la vita è un biscotto ma se piove si scioglie",
+                "Oggi ci sei, domani chissà...",
+                "I giovani d’oggi non hanno più rispetto per gli anziani",
+                "Nessuno mette Baby in un angolo",
+                "È tutto un magna-magna",
+                "Qui una volta era tutta campagna",
+                "Mi piace l'odore del napalm di mattina",
+                "Se non ti ama non ti merita",
+                "Qui casca l’asino",
+                "LIBERTAAAAAA!",
+                "Ogni lasciata è persa",
+                "Ormai si passa direttamente dal cappotto alle mezze maniche",
+                "Mai incrociare i flussi",
+                "Marika, vai a letto",
+            ]
         }
     },
     methods: {
@@ -86,35 +106,52 @@ createApp({
         //** FUNZIONE GENERICA CREATE MESSAGE **************//
         createMessage(message, status) {
             this.newFriendMessageObj.message = message
-            this.newFriendMessageObj.date = this.getNewMessageDate();
+            this.newFriendMessageObj.date = this.getNewMessageDate(),
             this.newFriendMessageObj.status = status;
-            console.log(this.newFriendMessageObj)
+           //F console.log(this.newFriendMessageObj)
         },
         //** FUNZIONE SEND PERSONAL MESSAGE AND GAIN AUTOMATIC REPLAY **************//
 
         sendNewPersonalMessageAndReplay() {
-            this.createMessage(this.newPersonalMessage, "recived");
-            //console.log(this.newFriendMessageObj);
-            //console.log(this.friends[this.activeFriendIndex].messages);
-            this.friends[this.activeFriendIndex].messages.push({
-                ...this.newFriendMessageObj,
-            });
-            //console.log(this.friends[this.activeFriendIndex].messages);
-           
-            //vorrei creare un animazione coi pallini come se stesse l'altro utente stesse digitando____________________________________
-            setTimeout(() => {
-                this.createMessage("ok", "sent");
+            if (this.newPersonalMessage === "") {
+                alert("inserisci qualcosa")
+                return
+            } else {
+                this.createMessage(this.newPersonalMessage, "recived");
+                //console.log(this.newFriendMessageObj);
+                //console.log(this.friends[this.activeFriendIndex].messages);
                 this.friends[this.activeFriendIndex].messages.push({
                     ...this.newFriendMessageObj,
                 });
-            }, 1500);
-            console.log("daje", this.friends[this.activeFriendIndex].messages);
+                //console.log(this.friends[this.activeFriendIndex].messages);
+
+
+                //vorrei creare un animazione coi pallini come se stesse l'altro utente stesse digitando____________________________________
+                setTimeout(() => {
+                    let friendReplay = this.randomNumberOfRange(0, this.possibleReplies.length);
+
+                    //console.log("replay", friendReplay);
+
+                    this.createMessage(this.possibleReplies[friendReplay], "sent");
+                    this.friends[this.activeFriendIndex].messages.push({
+                        ...this.newFriendMessageObj,
+                    });
+                }, 2000);
+                console.log("daje", this.friends[this.activeFriendIndex].messages);
+            }
+        },
+          /************* FUNZIONE GENERA NUMERI RANDOM *****************/
+        /**
+         * esegue un'estrazione casuale di un numero intero compreso fra i valori passati per argomenti(compresi anchessi)
+         * 
+         * @param {number} minNumber è il valore minimo del range entro il quale si desidera estrarre il numero dalla funzione
+         * @param {number} maxNumber è il valore massimo del range entro il quale si desidera estrarre il numero dalla funzione
+         * @returns il valore di returns è compreso fra i valori minNumber e maxNumber  minNumber <=returns <=maxNumber
+         */
+        randomNumberOfRange(minNumber, maxNumber) {
+            return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
         },
     },
-
-
-
-
     mounted() {
         console.log(this.activeFriendIndex);
         console.log(this.newPersonalMessage);
