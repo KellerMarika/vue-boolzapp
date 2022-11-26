@@ -195,7 +195,7 @@
 
                 <i class="fa-regular fa-face-smile dark-grey_color"></i>
                 <!-- deve funzionare con enter -->
-                <form action="" class="flex-fill rounded-2" @submit.prevent="sendNewPersonalMessage">
+                <form action="" class="flex-fill rounded-2" @submit.prevent=" sendNewPersonalMessageAndReplay">
 
                   <input 
                   v-if="activeFriendIndex == -1" type="text" name="message" id="message"placeholder="seleziona un amico con cui chattare!"class="w-100 p-3 border-1 rounded-2" disabled>

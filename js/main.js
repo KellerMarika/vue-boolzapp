@@ -1,4 +1,3 @@
-
 import friendsList from "./friendsList.js"
 
 const { createApp } = Vue
@@ -81,37 +80,39 @@ createApp({
             return newDate
         },
 
-         //** FUNZIONE SEND MESSAGE **************//
 
-        sendNewPersonalMessage() {
 
-            this.newFriendMessageObj.message = this.newPersonalMessage;
+
+        //** FUNZIONE CREATE MESSAGE **************//
+        createMessage(message, status) {
+            this.newFriendMessageObj.message = message
             this.newFriendMessageObj.date = this.getNewMessageDate();
-            this.newFriendMessageObj.status = 'trcivrd';
+            this.newFriendMessageObj.status = status;
+            console.log(this.newFriendMessageObj)
+        },
+        //** FUNZIONE SEND PERSONAL MESSAGE AND GAIN AUTOMATIC REPLAY **************//
+
+        sendNewPersonalMessageAndReplay() {
+            const lola = this.createMessage(this.newPersonalMessage, "recived");
             //console.log(this.newFriendMessageObj);
             //console.log(this.friends[this.activeFriendIndex].messages);
             this.friends[this.activeFriendIndex].messages.push({
                 ...this.newFriendMessageObj,
-                status: "recived",
             });
-
             console.log(this.friends[this.activeFriendIndex].messages);
             //set interval di un secondo (funzione sent)
         },
-       /* console.log(this.friends[this.activeFriendIndex].messages); */
     },
 
 
 
 
     mounted() {
-    console.log(this.activeFriendIndex);
-    console.log(this.newPersonalMessage);
-    console.log(this.getNewMessageDate());
+        console.log(this.activeFriendIndex);
+        console.log(this.newPersonalMessage);
+        console.log(this.getNewMessageDate());
 
 
 
-},
+    },
 }).mount("#app")
-
-
