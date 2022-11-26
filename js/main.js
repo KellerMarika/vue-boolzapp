@@ -1,17 +1,20 @@
 
-import usersList from "./usersList.js"
+import friendsList from "./friendsList.js"
 
 const { createApp } = Vue
 
 createApp({
     data() {
         return {
-            users: usersList,
-            userActiveIndex: -1,
-            newRecivedMessage: {
+            friends: friendsList,
+            activeFriendIndex: -1,
+
+            newPersonalMessage: "",
+            newFriendMessageObj: {
                 date: "",
                 message: "",
-                status: 'received'
+                status: "",
+
             }
         }
     },
@@ -42,15 +45,13 @@ createApp({
             //finalmente qualcosa che mi piace 
         },
 
-
-
         //** FUNZIONE RECUPERO INDEX (al click) **************//
 
         checkActiveIndex(currentIndex) {
             //console.log(currentIndex);
-            this.userActiveIndex = currentIndex;
-            console.log(this.userActiveIndex);
-            console.log("original messages",this.users[this.userActiveIndex].messages);
+            this.activeFriendIndex = currentIndex;
+            console.log(this.activeFriendIndex);
+            console.log("original messages", this.friends[this.activeFriendIndex].messages);
         },
 
         /**FUNZIONE GENERICA RECUPERO DATA E ORA REALE FORMATO:   yy/yy/yyyy xx:xx
@@ -66,8 +67,8 @@ createApp({
             a = a.replace(/T/g, ' ').split("");
 
             // console.log(a)
-            //riduco la lunghezza dell'array a "y/m/d  h:m" (a.lenght=18 = "y/m/d h:m:s")
-            a.length = 16
+            //riduco la lunghezza dell'array a "y/m/d  h:m:s"
+            a.length = 19
             //ricongiungo i caratteri in un'unica stringa per poi disgiungerli all'altezza dello spazio (" ") creando un array  di "date" + "time"
             a = a.join("").split(" ");
             //console.log(a);
@@ -80,25 +81,37 @@ createApp({
             return newDate
         },
 
-        sendNewMessage() {
-            this.newRecivedMessage.date = this.getNewMessageDate();
-            //console.log(this.newRecivedMessage);
-            //console.log(this.users[this.userActiveIndex].messages);
-            this.users[this.userActiveIndex].messages.push({          
-                ...this.newRecivedMessage});
+         //** FUNZIONE SEND MESSAGE **************//
 
-            console.log(this.users[this.userActiveIndex].messages);
-        }
+        sendNewPersonalMessage() {
+
+            this.newFriendMessageObj.message = this.newPersonalMessage;
+            this.newFriendMessageObj.date = this.getNewMessageDate();
+            this.newFriendMessageObj.status = 'trcivrd';
+            //console.log(this.newFriendMessageObj);
+            //console.log(this.friends[this.activeFriendIndex].messages);
+            this.friends[this.activeFriendIndex].messages.push({
+                ...this.newFriendMessageObj,
+                status: "recived",
+            });
+
+            console.log(this.friends[this.activeFriendIndex].messages);
+            //set interval di un secondo (funzione sent)
+        },
+       /* console.log(this.friends[this.activeFriendIndex].messages); */
     },
+
+
+
 
     mounted() {
-        console.log(this.userActiveIndex);
-        console.log(this.newRecivedMessage);
-        console.log(this.getNewMessageDate());
+    console.log(this.activeFriendIndex);
+    console.log(this.newPersonalMessage);
+    console.log(this.getNewMessageDate());
 
 
 
-    },
+},
 }).mount("#app")
 
 

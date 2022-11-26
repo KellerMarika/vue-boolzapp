@@ -42,7 +42,7 @@ i {
     align-self: flex-end;
 }
 
-.user-card.active{
+.friend-card.active{
     background-color:#e9ebeb;
 }
 /**** MAIN ********************/
@@ -83,10 +83,10 @@ i {
     color: var(--secondary_color);
 }
 
-#users-container {
+#friends-container {
     width: 500px;
 }
-.user-card {
+.friend-card {
     border-bottom: 1px solid var(--secondary_color_light)
 }
 
