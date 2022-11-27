@@ -7,9 +7,11 @@ createApp({
     data() {
         return {
             friends: friendsList,
-            activeFriendIndex: -1,
+            activeFriendIndex: 1,
             search: "",
             newPersonalMessage: "",
+            activeDropdown:false,
+
 
             newFriendMessageObj: {
                 date: "",
@@ -47,7 +49,6 @@ createApp({
         },
 
         //** FUNZIONE RECUPERO INDEX (al click) **************//
-
         checkActiveIndex(currentIndex) {
             //console.log(currentIndex);
             this.activeFriendIndex = currentIndex;
@@ -82,9 +83,6 @@ createApp({
             return newDate
         },
 
-
-
-
         //** FUNZIONE GENERICA CREATE MESSAGE **************//
         createMessage(message, status) {
             this.newFriendMessageObj.message = message
@@ -92,8 +90,8 @@ createApp({
                 this.newFriendMessageObj.status = status;
             //F console.log(this.newFriendMessageObj)
         },
-        //** FUNZIONE SEND PERSONAL MESSAGE AND GAIN AUTOMATIC REPLAY **************//
 
+        //** FUNZIONE SEND PERSONAL MESSAGE AND GAIN AUTOMATIC REPLAY **************//
         sendNewPersonalMessageAndReplay() {
             if (this.newPersonalMessage === "") {
                 alert("inserisci qualcosa")
@@ -124,6 +122,7 @@ createApp({
                 //console.log("daje", this.friends[this.activeFriendIndex].messages);
             }
         },
+
         /************* FUNZIONE GENERA NUMERI RANDOM *****************/
         /**
          * esegue un'estrazione casuale di un numero intero compreso fra i valori passati per argomenti(compresi anchessi)
@@ -157,7 +156,15 @@ createApp({
         filtredFriends() {
             return this.filterObjList(this.friends, "name", this.search);
         },
+ /************* FUNZIONE SPECIFICA SET ACTIVE MESSAGE DROPDOWN ****************/
+        setActiveMessageDropdown(){
+            this.activeDropdown= true
+            console.log(this.activeDropdown);
+
+
+        }
     },
     mounted() {
+        console.log(this.activeDropdown);
     },
 }).mount("#app")

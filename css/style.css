@@ -108,3 +108,14 @@ i {
     max-width: 85%;
 }
 
+.dropdown-message{
+    opacity: 0;
+    transition: .2s;
+}
+.message:hover .dropdown-message{
+    opacity: 100;
+}
+.dropdown-message.active{
+    opacity: 100;
+    color: rgb(59, 58, 58);
+}

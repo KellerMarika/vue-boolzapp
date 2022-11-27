@@ -82,15 +82,14 @@
                   class="p-2 d-flex justify-content-between align-items-center gap-4 px-2">
                 <!-- deve funzionare con enter -->
                 <form action="" class="flex-fill rounded-1 d-flex"
-                @submit.prevent="filtredFriends">
+                    @submit.prevent="filtredFriends">
                   <button class="search-btn p-1 bg-white">
                     <i class="fa-solid fa-magnifying-glass px-4"></i>
                   </button>
                   <input type="text" name="search" id="search"
                       placeholder="ricerca o inizia una nuova chat"
                       class="w-100 px-3 border-0 bg-white"
-                      v-model="search"
-                      >
+                      v-model="search">
                 </form>
               </div>
 
@@ -175,20 +174,29 @@
 
                 <div class="message-container d-flex flex-column gap-4">
 
-                  <!-- nessuna chart attiva -->
-                  <div v-if="activeFriendIndex == -1"
-                      class="message rounded-3 d-flex">
-                  </div>
 
                   <!-- CHAT ATTIVA -->
                   <div class="message rounded-3 d-flex"
-                      v-else="activeFriendIndex !== -1"
+                      v-if="activeFriendIndex !== -1"
                       v-for="(activefriendMessages,i) in friends[activeFriendIndex].messages"
-                      :class= "activefriendMessages.status !== 'sent' ? 'personal' : '' ">
+                      :class="activefriendMessages.status !== 'sent' ? 'personal' : '' ">
                     <p class=" px-4 py-2 ">{{activefriendMessages.message}}</p>
-                    <small
-                        class="subtitle align-self-end flex-fill text-end pe-2">{{extractTimeFromDate(activefriendMessages.date)}}</small>
+
+                    <div class="flex-fill d-flex flex-column align-items-end p-1">
+                      <i class="dropdown-message fa-solid fa-chevron-down flex-fill"
+                      :class="{'active': activeDropdown === true}"
+                      
+                      @click="setActiveMessageDropdown"></i>
+                      <!-- subtitle align-self-end flex-fill text-end pe-2 -->
+                      <small class=" pe-2">
+                        {{extractTimeFromDate(activefriendMessages.date)}}</small>
+                    </div>
                   </div>
+
+                  <!-- nessuna chart attiva -->
+                  <div v-else class="message rounded-3 d-flex">
+                  </div>
+
                 </div>
 
               </div>
@@ -200,12 +208,14 @@
                 <!-- deve funzionare con enter -->
                 <form action="" class="flex-fill rounded-2" @submit.prevent=" sendNewPersonalMessageAndReplay">
 
-                  <input 
-                  v-if="activeFriendIndex == -1" type="text" name="message" id="message"placeholder="seleziona un amico con cui chattare!"class="w-100 p-3 border-1 rounded-2" disabled>
+                  <input
+                      v-if="activeFriendIndex == -1" type="text" name="message" id="message"
+                      placeholder="seleziona un amico con cui chattare!" class="w-100 p-3 border-1 rounded-2" disabled>
 
-                  <input 
-                  v-else type="text" name="message" id="message"placeholder="scrivi qui il tuo messaggio"class="w-100 p-3 border-0  rounded-2"
-                  v-model="newPersonalMessage">
+                  <input
+                      v-else type="text" name="message" id="message" placeholder="scrivi qui il tuo messaggio"
+                      class="w-100 p-3 border-0  rounded-2"
+                      v-model="newPersonalMessage">
                 </form>
 
                 <i class="fa-solid fa-microphone dark-grey_color"></i>
