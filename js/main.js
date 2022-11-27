@@ -1,5 +1,5 @@
-import friendsList, { messages } from "./friendsList.js"
-import fmessages from "./friendsList.js"
+import friendsList, { messages } from "./Arrays.js"
+import fmessages from "./Arrays.js"
 
 const { createApp } = Vue
 
