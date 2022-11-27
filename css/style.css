@@ -5,6 +5,7 @@
     --secondary_color: #b1b1b1;
     --secondary_color_dark: #676b73;
     --tertiary_color: #8edafc;
+    --tertiary_color_light: #8edafc57;
 }
 
 img {
@@ -28,7 +29,7 @@ i {
     color: var(--secondary_color);
 }
 
-.dark-grey_color{
+.dark-grey_color {
     color: var(--secondary_color_dark)
 }
 
@@ -40,9 +41,10 @@ i {
     align-self: flex-end;
 }
 
-.friend-card.active{
-    background-color:#e9ebeb;
+.friend-card.active {
+    background-color: #e9ebeb;
 }
+
 /**** MAIN ********************/
 
 #max-container::before {
@@ -66,9 +68,11 @@ i {
 #notifications {
     background-color: var(--tertiary_color);
 }
+
 #notifications i {
     color: var(--tertiary_color);
 }
+
 #search {
     background-color: var(--secondary_color_light)
 }
@@ -77,6 +81,7 @@ i {
     border: none;
     border-right: 1px solid var(--secondary_color_light);
 }
+
 .search-btn i {
     color: var(--secondary_color);
 }
@@ -84,6 +89,7 @@ i {
 #friends-container {
     width: 500px;
 }
+
 .friend-card {
     border-bottom: 1px solid var(--secondary_color_light)
 }
@@ -98,24 +104,47 @@ i {
 .message-container {
     margin: 2% 8%;
 }
+
 .message {
     background-color: white;
     max-width: 70%;
     min-width: 30%;
     width: fit-content;
 }
+
 .message p {
     max-width: 85%;
 }
 
-.dropdown-message{
+.dropdown-message {
     opacity: 0;
     transition: .2s;
 }
-.message:hover .dropdown-message{
+
+.message:hover .dropdown-message {
     opacity: 100;
 }
-.dropdown-message.active{
+
+.dropdown-message.active {
     opacity: 100;
     color: rgb(59, 58, 58);
+}
+
+.dropdown-message-options {
+    width: 150px;
+    top: 30px;
+    right: 8px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
+    z-index: 5;
+    opacity: 0;
+    transition: .1s;
+}
+
+.dropdown-message.active+.dropdown-message-options {
+    opacity: 100;
+}
+
+.dropdown-message.active+.dropdown-message-options *:hover{
+    background-color: var(--tertiary_color_light);
+    opacity: 100;
 }

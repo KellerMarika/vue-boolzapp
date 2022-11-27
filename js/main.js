@@ -7,10 +7,10 @@ createApp({
     data() {
         return {
             friends: friendsList,
-            activeFriendIndex: 1,
+            activeFriendIndex: 1,//__________________-1
             search: "",
             newPersonalMessage: "",
-            activeDropdown:false,
+            activeMessageDropdown:false,//_____________false
 
 
             newFriendMessageObj: {
@@ -158,13 +158,15 @@ createApp({
         },
  /************* FUNZIONE SPECIFICA SET ACTIVE MESSAGE DROPDOWN ****************/
         setActiveMessageDropdown(){
-            this.activeDropdown= true
-            console.log(this.activeDropdown);
-
-
-        }
+            this.activeMessageDropdown= true
+            console.log(this.activeMessageDropdown);
+        },
+  /*       disactiveMessageDropdown(){
+            this.activeMessageDropdown= false
+            console.log(this.activeMessageDropdown);
+        } */
     },
     mounted() {
-        console.log(this.activeDropdown);
+        console.log(this.activeMessageDropdown);
     },
 }).mount("#app")

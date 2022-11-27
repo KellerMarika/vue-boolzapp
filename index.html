@@ -182,12 +182,18 @@
                       :class="activefriendMessages.status !== 'sent' ? 'personal' : '' ">
                     <p class=" px-4 py-2 ">{{activefriendMessages.message}}</p>
 
-                    <div class="flex-fill d-flex flex-column align-items-end p-1">
+                    <div class="flex-fill d-flex flex-column align-items-end p-1 position-relative">
                       <i class="dropdown-message fa-solid fa-chevron-down flex-fill"
-                      :class="{'active': activeDropdown === true}"
-                      
-                      @click="setActiveMessageDropdown"></i>
-                      <!-- subtitle align-self-end flex-fill text-end pe-2 -->
+                          :class="{'active': activeMessageDropdown === true}"
+                          @click="setActiveMessageDropdown">
+                      </i>
+                      <div class="red dropdown-message-options position-absolute  bg-light"
+                          :class="{'active': activeMessageDropdown === true}">
+                        <div class="p-3"> message info</div>
+                        <div class="p-3"> delete message</div>
+                      </div>
+                      <!-- devo aggiungere un event listner per rimuovere l'active -->
+                  
                       <small class=" pe-2">
                         {{extractTimeFromDate(activefriendMessages.date)}}</small>
                     </div>
