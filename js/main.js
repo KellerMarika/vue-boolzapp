@@ -1,4 +1,5 @@
-import friendsList from "./friendsList.js"
+import friendsList, { messages } from "./friendsList.js"
+import fmessages from "./friendsList.js"
 
 const { createApp } = Vue
 
@@ -7,7 +8,6 @@ createApp({
         return {
             friends: friendsList,
             activeFriendIndex: -1,
-            a: "",
             search: "",
             newPersonalMessage: "",
 
@@ -16,27 +16,7 @@ createApp({
                 message: "",
                 status: "",
             },
-            possibleReplies: [
-
-                "Non si finisce mai di imparare",
-                "L’importante è bere tanta acqua",
-                "Francamente me ne infischio",
-                "Non è tanto il caldo quanto l’umidità",
-                "la vita è un biscotto ma se piove si scioglie",
-                "Oggi ci sei, domani chissà...",
-                "I giovani d’oggi non hanno più rispetto per gli anziani",
-                "Nessuno mette Baby in un angolo",
-                "È tutto un magna-magna",
-                "Qui una volta era tutta campagna",
-                "Mi piace l'odore del napalm di mattina",
-                "Se non ti ama non ti merita",
-                "Qui casca l’asino",
-                "LIBERTAAAAAA!",
-                "Ogni lasciata è persa",
-                "Ormai si passa direttamente dal cappotto alle mezze maniche",
-                "Mai incrociare i flussi",
-                "Marika, vai a letto",
-            ]
+            possibleReplies: messages
         }
     },
     methods: {
@@ -125,6 +105,8 @@ createApp({
                 this.friends[this.activeFriendIndex].messages.push({
                     ...this.newFriendMessageObj,
                 });
+                //reset
+                this.newPersonalMessage=""
                 //console.log(this.friends[this.activeFriendIndex].messages);
 
 
