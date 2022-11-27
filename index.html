@@ -100,7 +100,7 @@
 
                 <!-- friend list element___________________________________________________________v-for -->
                 <li class="friend-card w-100 d-flex align-items-center gap-1 p-2"
-                    v-for="(friend,i) in friends"
+                    v-for="(friend,i) in filtredFriends()"
                     @click=" checkActiveIndex(i)"
                     :class="(i == activeFriendIndex) ? 'active' : ''">
 
@@ -225,4 +225,5 @@
   CSS
 1)rifare il background color del max container in un colpo solo col linear gradient
 2)domani esportiamo anche le replays\\
+3)reset chat
  -->

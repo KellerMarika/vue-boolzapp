@@ -7,9 +7,10 @@ createApp({
         return {
             friends: friendsList,
             activeFriendIndex: -1,
+            a: "",
             search: "",
-
             newPersonalMessage: "",
+
             newFriendMessageObj: {
                 date: "",
                 message: "",
@@ -71,7 +72,7 @@ createApp({
             //console.log(currentIndex);
             this.activeFriendIndex = currentIndex;
             console.log(this.activeFriendIndex);
-            console.log("original messages", this.friends[this.activeFriendIndex].messages);
+            //console.log("original messages", this.friends[this.activeFriendIndex].messages);
         },
 
         /**FUNZIONE GENERICA RECUPERO DATA E ORA REALE FORMATO:   yy/yy/yyyy xx:xx
@@ -138,7 +139,7 @@ createApp({
                         ...this.newFriendMessageObj,
                     });
                 }, 2000);
-                console.log("daje", this.friends[this.activeFriendIndex].messages);
+                //console.log("daje", this.friends[this.activeFriendIndex].messages);
             }
         },
         /************* FUNZIONE GENERA NUMERI RANDOM *****************/
@@ -165,25 +166,16 @@ createApp({
          */
         filterObjList(array, arrayElementProprietyToFilter, filter) {
             return array.filter(element => {
+
+                //console.log("search", filter);
                 return element[arrayElementProprietyToFilter].toLowerCase().includes(filter.toLowerCase());
             });
         },
 
         filtredFriends() {
-            console.log(this.search)
-            console.log("filter by search:",this.filterObjList(this.friends, "name", this.search));
             return this.filterObjList(this.friends, "name", this.search);
-        }
-
+        },
     },
     mounted() {
-        //console.log(this.activeFriendIndex);
-        //console.log(this.newPersonalMessage);
-        //console.log(this.getNewMessageDate());
-        //console.log(this.search);
-        //console.log(this.friends);
-        //console.log("filtro",this.filterObjList(this.friends, "name", "M"));
-        //console.log(this.filtredFriends())
-
     },
 }).mount("#app")

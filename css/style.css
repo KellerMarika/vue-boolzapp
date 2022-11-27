@@ -1,11 +1,9 @@
 /**** BASE ********************/
 
 :root {
-
     --secondary_color_light: #eaeaea;
     --secondary_color: #b1b1b1;
     --secondary_color_dark: #676b73;
-
     --tertiary_color: #8edafc;
 }
 
