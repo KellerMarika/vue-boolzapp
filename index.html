@@ -81,13 +81,16 @@
               <div id="search"
                   class="p-2 d-flex justify-content-between align-items-center gap-4 px-2">
                 <!-- deve funzionare con enter -->
-                <form action="" class="flex-fill rounded-1 d-flex ">
-                  <button class="search-btn p-1 bg-white" disabled>
+                <form action="" class="flex-fill rounded-1 d-flex"
+                @submit.prevent="filtredFriends">
+                  <button class="search-btn p-1 bg-white">
                     <i class="fa-solid fa-magnifying-glass px-4"></i>
                   </button>
                   <input type="text" name="search" id="search"
                       placeholder="ricerca o inizia una nuova chat"
-                      class="w-100 px-3 border-0 bg-white">
+                      class="w-100 px-3 border-0 bg-white"
+                      v-model="search"
+                      >
                 </form>
               </div>
 

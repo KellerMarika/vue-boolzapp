@@ -7,13 +7,13 @@ createApp({
         return {
             friends: friendsList,
             activeFriendIndex: -1,
+            search: "",
 
             newPersonalMessage: "",
             newFriendMessageObj: {
                 date: "",
                 message: "",
                 status: "",
-                search: "M",
             },
             possibleReplies: [
 
@@ -154,30 +154,36 @@ createApp({
         },
 
         /************* FUNZIONE GENERICA FILTER OBJECTS LIST BY STRING ****************/
-/**filtra l'array del
- * 
- * @param {array} array array di partenza da filtrare (in vue es: this.array)
- * @param {string} arrayElementProprietyToFilter proprietà comune agli elementi dell'array che si desidera filtrare.
- * è necessario specificare tutto il percorso per raggiungere la proprietà con la dot notation
- * deve essere una "stringa" non funziona senza apici 
- * @param {string} filter "stringa" attraverso cui si desidera filtrare la proprietà degli elementi
- * @returns 
- */
+        /**filtra l'array del
+         * 
+         * @param {array} array array di partenza da filtrare (in vue es: this.array)
+         * @param {string} arrayElementProprietyToFilter proprietà comune agli elementi dell'array che si desidera filtrare.
+         * è necessario specificare tutto il percorso per raggiungere la proprietà con la dot notation
+         * deve essere una "stringa" non funziona senza apici 
+         * @param {string} filter "stringa" attraverso cui si desidera filtrare la proprietà degli elementi
+         * @returns 
+         */
         filterObjList(array, arrayElementProprietyToFilter, filter) {
             return array.filter(element => {
                 return element[arrayElementProprietyToFilter].toLowerCase().includes(filter.toLowerCase());
             });
         },
-      
+
+        filtredFriends() {
+            console.log(this.search)
+            console.log("filter by search:",this.filterObjList(this.friends, "name", this.search));
+            return this.filterObjList(this.friends, "name", this.search);
+        }
+
     },
     mounted() {
-        console.log(this.activeFriendIndex);
-        console.log(this.newPersonalMessage);
-        console.log(this.getNewMessageDate());
-        console.log(this. filterObjList(this.friends,"name","L"))
-  
-    
-
+        //console.log(this.activeFriendIndex);
+        //console.log(this.newPersonalMessage);
+        //console.log(this.getNewMessageDate());
+        //console.log(this.search);
+        //console.log(this.friends);
+        //console.log("filtro",this.filterObjList(this.friends, "name", "M"));
+        //console.log(this.filtredFriends())
 
     },
 }).mount("#app")
