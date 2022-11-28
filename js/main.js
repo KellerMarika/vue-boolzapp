@@ -61,7 +61,7 @@ createApp({
         checkActiveIndex(currentIndex) {
             //console.log(currentIndex);
             this.activeFriendIndex = currentIndex;
-            console.log(this.activeFriendIndex);
+            //console.log(this.activeFriendIndex);
             //console.log("original messages", this.friends[this.activeFriendIndex].messages);
         },
 
@@ -172,18 +172,32 @@ createApp({
         setActiveMessageDropdown(messageIndex) {
             this.activeMessageDropdown = messageIndex
             console.log("to delete:", this.activeMessageDropdown, this.friends[this.activeFriendIndex].messages);
+            console.log("lenght before delete", this.friends[this.activeFriendIndex].messages.length);
         },
+
         /************* FUNZIONE SPECIFICA MOSTRA DETTAGLI MESSAGGIO ****************/
         showInfoActiveMessage(messageIndex) {
             this.showMessageInfo = messageIndex
+            console.log(messageIndex)
 
         },
         /************* FUNZIONE SPECIFICA CANCELLA MESSAGGIO ****************/
         deleteActiveMessage(messageIndex) {
+        
+       /*      this.activeMessageDropdown = -1
+            this.showMessageInfo = -1 */
 
-            this.activeMessageDropdown = -1
+
             this.friends[this.activeFriendIndex].messages.splice(messageIndex, 1);
-            console.log("delete", messageIndex, this.friends[this.activeFriendIndex].messages);
+
+
+
+
+
+            console.log("deleted", messageIndex, this.friends[this.activeFriendIndex].messages);
+            console.log("lenght after delete", this.friends[this.activeFriendIndex].messages.length);
+
+
         },
         setEmoticonsActive() {
             if (this.activeFriendIndex !== -1) {
@@ -201,9 +215,11 @@ createApp({
 
     },
     mounted() {
-        console.log(this.activeMessageDropdown);
+        //console.log(this.activeMessageDropdown);
 
-        resetAllOnClick()
+        /*   resetAllOnClick(){
+          
+          } */
 
     },
 }).mount("#app")
