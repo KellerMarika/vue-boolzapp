@@ -7,11 +7,16 @@ createApp({
     data() {
         return {
             friends: friendsList,
-            activeFriendIndex: -1,//__________________-1
+            //amico selezionato
+            activeFriendIndex: -1,
+            //messaggio selezionato
+            activeMessageDropdown: -1,
+
             search: "",
             newPersonalMessage: "",
-            activeMessageDropdown: -1,//_____________false
+            //info messaggio
             showMessageInfo: -1,
+            //emoicon
             emoticonsActive: false,
 
             newFriendMessageObj: {
@@ -19,7 +24,9 @@ createApp({
                 message: "",
                 status: "",
             },
+            //array messaggi default 
             possibleReplies: messages,
+            //array emoticons
             emoticons,
         }
     },
@@ -112,12 +119,12 @@ createApp({
 
                 //vorrei creare un animazione coi pallini come se stesse l'altro utente stesse digitando____________________________________
                 setTimeout(() => {
-                    let friendReplay = this.randomNumberOfRange(0, this.possibleReplies.length-1);
+                    let friendReplay = this.randomNumberOfRange(0, this.possibleReplies.length - 1);
 
-                    let friendEmoticon = this.randomNumberOfRange(0, this.emoticons.length-1)
+                    let friendEmoticon = this.randomNumberOfRange(0, this.emoticons.length - 1)
                     //console.log("replay", friendReplay);
 
-                    this.createMessage(this.possibleReplies[friendReplay]+this.emoticons[friendEmoticon].img, "sent");
+                    this.createMessage(this.possibleReplies[friendReplay] + this.emoticons[friendEmoticon].img, "sent");
                     this.friends[this.activeFriendIndex].messages.push({
                         ...this.newFriendMessageObj,
                     });
@@ -179,10 +186,14 @@ createApp({
             console.log("delete", messageIndex, this.friends[this.activeFriendIndex].messages);
         },
         setEmoticonsActive() {
-            this.emoticonsActive = true
+            if (this.activeFriendIndex !== -1) {
+                this.emoticonsActive = true
+            }
+            /*      if(activeFriendIndex!==-1){
+                 this.emoticonsActive = true} */
             console.log(this.emoticonsActive);
         },
-        addEmojiToMessage(emoji, i) {
+        addEmojiToMessage(emoji) {
             this.newPersonalMessage += emoji.img
             console.log(this.newPersonalMessage)
 
@@ -191,6 +202,8 @@ createApp({
     },
     mounted() {
         console.log(this.activeMessageDropdown);
-        console.log(this.emoticonsActive)
+
+        resetAllOnClick()
+
     },
 }).mount("#app")
