@@ -172,31 +172,59 @@
 
               <div id="main-chat" class="flex-fill overflow-auto">
 
-                <div class="message-container d-flex flex-column gap-4">
+                <div class="message-container d-flex flex-column gap-4 position-relative">
 
 
                   <!-- CHAT ATTIVA -->
+                  <!-- messaggio -->
                   <div class="message rounded-3 d-flex"
                       v-if="activeFriendIndex !== -1"
                       v-for="(activefriendMessages,i) in friends[activeFriendIndex].messages"
-                      :class="activefriendMessages.status !== 'sent' ? 'personal' : '' ">
+                      :class="{'personal': activefriendMessages.status !== 'sent'}">
+                    <!-- testo messaggio -->
                     <p class=" px-4 py-2 ">{{activefriendMessages.message}}</p>
+                    <!--dropdown -->
+                    <div id="dropdown-message-container"
+                        class="flex-fill d-flex flex-column align-items-end p-1 position-relative">
 
-                    <div class="flex-fill d-flex flex-column align-items-end p-1 position-relative">
+                      <!-- icona dropdown -->
                       <i class="dropdown-message fa-solid fa-chevron-down flex-fill"
-                          :class="{'active': activeMessageDropdown === true}"
-                          @click="setActiveMessageDropdown">
+                          :class="{'active': i === activeMessageDropdown}"
+                          @click="setActiveMessageDropdown(i)">
                       </i>
-                      <div class="red dropdown-message-options position-absolute  bg-light"
-                          :class="{'active': activeMessageDropdown === true}">
-                        <div class="p-3"> message info</div>
-                        <div class="p-3"> delete message</div>
+
+                      <!-- v-show (altrimenti si accavallano) -->
+                      <div class="dropdown-message-options position-absolute  bg-light"
+                          v-show="i === activeMessageDropdown">
+                        <!-- info option -->
+                        <div class="message-info-option p-3"
+                            @click="showInfoActiveMessage(i)"> message info</div>
+
+
+
+                        <!-- delete option -->
+                        <div class="message-delete-option p-3"
+                            @click="deleteActiveMessage(i)"> delete message</div>
                       </div>
                       <!-- devo aggiungere un event listner per rimuovere l'active -->
-                  
+
                       <small class=" pe-2">
                         {{extractTimeFromDate(activefriendMessages.date)}}</small>
                     </div>
+
+                    <!-- message infos  -->
+                    <div class="message-info position-absolute bg-light text-center p-4 border"
+                        v-show="i === showMessageInfo">
+                      <div>mittente:
+                        {{activefriendMessages.status==='sent' ? friends[activeFriendIndex].name :'Marika Keller' }}
+                      </div>
+                      <div>inviato il:
+                        {{activefriendMessages.date}}</div>
+                      <div>status:
+                        {{activefriendMessages.status}}</div>
+
+                    </div>
+
                   </div>
 
                   <!-- nessuna chart attiva -->
@@ -208,9 +236,18 @@
               </div>
               <!-- BOTTOM NAVBAR -->
               <div
-                  class="navbar-bottom_chat p-2 d-flex justify-content-between align-items-center gap-4 px-4">
+                  class="navbar-bottom_chat p-2 d-flex justify-content-between align-items-center  position-relative">
+                  <!-- emoticon-button -->
+                <button id="icon-btn" @click="setEmoticonsActive" class=" bg-transparent p-3 pe-4 py-3 m-0 border-0" >
+                  <i class="fa-regular fa-face-smile dark-grey_color"></i>
+                </button>
 
-                <i class="fa-regular fa-face-smile dark-grey_color"></i>
+                <!-- emoticons -->
+                <div class="emoticon d-flex justify-content-around gap-1 position-absolute"
+                    :class="{'active': emoticonsActive === true}">
+                  <div v-for="emoji,i in emoticons"> {{ emoji.img }} </div>
+                </div>
+
                 <!-- deve funzionare con enter -->
                 <form action="" class="flex-fill rounded-2" @submit.prevent=" sendNewPersonalMessageAndReplay">
 
@@ -224,7 +261,7 @@
                       v-model="newPersonalMessage">
                 </form>
 
-                <i class="fa-solid fa-microphone dark-grey_color"></i>
+                <i class="fa-solid fa-microphone dark-grey_color p-3 ps-4"></i>
               </div>
             </div>
           </div>
@@ -240,5 +277,6 @@
 <!-- TO DO:
   CSS
 1)rifare il background color del max container in un colpo solo col linear gradient
-
+2)add event listner se sposto il mouse e tolgo il focus dalle option tornano invisibili 
+3)fixare delete last [0] 
  -->

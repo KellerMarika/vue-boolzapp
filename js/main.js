@@ -1,5 +1,5 @@
-import friendsList, { messages } from "./Arrays.js"
-import fmessages from "./Arrays.js"
+import friendsList, { messages,emoticons } from "./Arrays.js"
+
 
 const { createApp } = Vue
 
@@ -10,15 +10,17 @@ createApp({
             activeFriendIndex: 1,//__________________-1
             search: "",
             newPersonalMessage: "",
-            activeMessageDropdown:false,//_____________false
-
+            activeMessageDropdown: -1,//_____________false
+            showMessageInfo:-1,
+            emoticonsActive:false,
 
             newFriendMessageObj: {
                 date: "",
                 message: "",
                 status: "",
             },
-            possibleReplies: messages
+            possibleReplies: messages,
+            emoticons,
         }
     },
     methods: {
@@ -104,7 +106,7 @@ createApp({
                     ...this.newFriendMessageObj,
                 });
                 //reset
-                this.newPersonalMessage=""
+                this.newPersonalMessage = ""
                 //console.log(this.friends[this.activeFriendIndex].messages);
 
 
@@ -156,17 +158,31 @@ createApp({
         filtredFriends() {
             return this.filterObjList(this.friends, "name", this.search);
         },
- /************* FUNZIONE SPECIFICA SET ACTIVE MESSAGE DROPDOWN ****************/
-        setActiveMessageDropdown(){
-            this.activeMessageDropdown= true
-            console.log(this.activeMessageDropdown);
+        /************* FUNZIONE SPECIFICA SET ACTIVE MESSAGE DROPDOWN ****************/
+        setActiveMessageDropdown(messageIndex) {
+            this.activeMessageDropdown = messageIndex
+            console.log("to delete:", this.activeMessageDropdown, this.friends[this.activeFriendIndex].messages);
         },
-  /*       disactiveMessageDropdown(){
-            this.activeMessageDropdown= false
-            console.log(this.activeMessageDropdown);
-        } */
+        /************* FUNZIONE SPECIFICA MOSTRA DETTAGLI MESSAGGIO ****************/
+        showInfoActiveMessage(messageIndex) {
+            this.showMessageInfo=messageIndex
+
+        },
+        /************* FUNZIONE SPECIFICA CANCELLA MESSAGGIO ****************/
+        deleteActiveMessage(messageIndex) {
+
+            this.activeMessageDropdown=-1
+            this.friends[this.activeFriendIndex].messages.splice(messageIndex, 1);
+            console.log("delete", messageIndex, this.friends[this.activeFriendIndex].messages);
+        },
+        setEmoticonsActive(){
+         this.emoticonsActive=true
+            console.log(this.emoticonsActive);
+        }
+
     },
     mounted() {
         console.log(this.activeMessageDropdown);
+        console.log(this.emoticonsActive)  
     },
 }).mount("#app")
