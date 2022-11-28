@@ -1,4 +1,4 @@
-import friendsList, { messages,emoticons } from "./Arrays.js"
+import friendsList, { messages, emoticons } from "./Arrays.js"
 
 
 const { createApp } = Vue
@@ -7,12 +7,12 @@ createApp({
     data() {
         return {
             friends: friendsList,
-            activeFriendIndex: 1,//__________________-1
+            activeFriendIndex: -1,//__________________-1
             search: "",
             newPersonalMessage: "",
             activeMessageDropdown: -1,//_____________false
-            showMessageInfo:-1,
-            emoticonsActive:false,
+            showMessageInfo: -1,
+            emoticonsActive: false,
 
             newFriendMessageObj: {
                 date: "",
@@ -66,7 +66,7 @@ createApp({
 
             //recuper la data in formato completo
             let a = new Date().toISOString();
-            //console.log(a)
+            console.log(a)
             //sostituisco tutte le "T" con " "(spazio) poi trasformo la stringa in un array di lettere
             a = a.replace(/T/g, ' ').split("");
 
@@ -112,15 +112,18 @@ createApp({
 
                 //vorrei creare un animazione coi pallini come se stesse l'altro utente stesse digitando____________________________________
                 setTimeout(() => {
-                    let friendReplay = this.randomNumberOfRange(0, this.possibleReplies.length);
+                    let friendReplay = this.randomNumberOfRange(0, this.possibleReplies.length-1);
 
+                    let friendEmoticon = this.randomNumberOfRange(0, this.emoticons.length-1)
                     //console.log("replay", friendReplay);
 
-                    this.createMessage(this.possibleReplies[friendReplay], "sent");
+                    this.createMessage(this.possibleReplies[friendReplay]+this.emoticons[friendEmoticon].img, "sent");
                     this.friends[this.activeFriendIndex].messages.push({
                         ...this.newFriendMessageObj,
                     });
+
                 }, 2000);
+
                 //console.log("daje", this.friends[this.activeFriendIndex].messages);
             }
         },
@@ -165,24 +168,29 @@ createApp({
         },
         /************* FUNZIONE SPECIFICA MOSTRA DETTAGLI MESSAGGIO ****************/
         showInfoActiveMessage(messageIndex) {
-            this.showMessageInfo=messageIndex
+            this.showMessageInfo = messageIndex
 
         },
         /************* FUNZIONE SPECIFICA CANCELLA MESSAGGIO ****************/
         deleteActiveMessage(messageIndex) {
 
-            this.activeMessageDropdown=-1
+            this.activeMessageDropdown = -1
             this.friends[this.activeFriendIndex].messages.splice(messageIndex, 1);
             console.log("delete", messageIndex, this.friends[this.activeFriendIndex].messages);
         },
-        setEmoticonsActive(){
-         this.emoticonsActive=true
+        setEmoticonsActive() {
+            this.emoticonsActive = true
             console.log(this.emoticonsActive);
+        },
+        addEmojiToMessage(emoji, i) {
+            this.newPersonalMessage += emoji.img
+            console.log(this.newPersonalMessage)
+
         }
 
     },
     mounted() {
         console.log(this.activeMessageDropdown);
-        console.log(this.emoticonsActive)  
+        console.log(this.emoticonsActive)
     },
 }).mount("#app")

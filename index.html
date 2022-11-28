@@ -132,6 +132,7 @@
               <!-- TOP NAVBAR -->
               <div class=" navbar-top_chat p-3 flex-shrink-0  d-flex align-items-center gap-1  ">
 
+                <!-- se nessun elemento della lista è attivo -->
                 <div class="no chatting_card d-flex align-items-center gap-1"
                     v-if="activeFriendIndex==-1 ">
 
@@ -143,6 +144,7 @@
                   </div>
                 </div>
 
+                <!-- se è attivo un elemento della lista -->
                 <div class="chatting_card  d-flex align-items-center gap-1"
                     v-else>
                   <div class="img-card-container  rounded-5 overflow-hidden me-2">
@@ -224,7 +226,6 @@
                         {{activefriendMessages.status}}</div>
 
                     </div>
-
                   </div>
 
                   <!-- nessuna chart attiva -->
@@ -238,14 +239,18 @@
               <div
                   class="navbar-bottom_chat p-2 d-flex justify-content-between align-items-center  position-relative">
                   <!-- emoticon-button -->
-                <button id="icon-btn" @click="setEmoticonsActive" class=" bg-transparent p-3 pe-4 py-3 m-0 border-0" >
+                <button id="emoticon-btn" @click="setEmoticonsActive" class=" bg-transparent p-3 pe-4 py-3 m-0 border-0" >
                   <i class="fa-regular fa-face-smile dark-grey_color"></i>
                 </button>
 
                 <!-- emoticons -->
                 <div class="emoticon d-flex justify-content-around gap-1 position-absolute"
-                    :class="{'active': emoticonsActive === true}">
-                  <div v-for="emoji,i in emoticons"> {{ emoji.img }} </div>
+                    :class="{'active': emoticonsActive === true}"
+                    v-if="activeFriendIndex!==-1">
+                  <div v-for="emoji,i in emoticons"
+                  @click='addEmojiToMessage(emoji,i)'> {{ emoji.img }} 
+                    
+                  </div>
                 </div>
 
                 <!-- deve funzionare con enter -->
@@ -277,6 +282,8 @@
 <!-- TO DO:
   CSS
 1)rifare il background color del max container in un colpo solo col linear gradient
-2)add event listner se sposto il mouse e tolgo il focus dalle option tornano invisibili 
+2)add event listner: se sposto il mouse e tolgo il focus dalle varie options, queste tornano invisibili _________________________chiedi
 3)fixare delete last [0] 
+4)chiedere perchè non mi ha preso il codice emoticon__________________________
+5)il mio impegnativo e magnifico lavoro sulle date, già di per sè inutile visto che potevo usare luxon è scorretto, poichè formattato di un'ora indietro. che dio lo fulmini
  -->
