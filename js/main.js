@@ -185,6 +185,7 @@ createApp({
         deleteActiveMessage(messageIndex) {
 
             this.friends[this.activeFriendIndex].messages.splice(messageIndex, 1);
+            setTimeout(()=>{this.activeMessageDropdown=-1},100)
             //console.log("deleted", messageIndex, this.friends[this.activeFriendIndex].messages);
             //console.log("lenght after delete", this.friends[this.activeFriendIndex].messages.length);
         },
