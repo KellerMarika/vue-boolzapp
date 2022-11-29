@@ -61,6 +61,7 @@ createApp({
         checkActiveIndex(currentIndex) {
             //console.log(currentIndex);
             this.activeFriendIndex = currentIndex;
+            console.log(this.friends[this.activeFriendIndex].messages.length)
             //console.log(this.activeFriendIndex);
             //console.log("original messages", this.friends[this.activeFriendIndex].messages);
         },
@@ -183,17 +184,12 @@ createApp({
         },
         /************* FUNZIONE SPECIFICA CANCELLA MESSAGGIO ****************/
         deleteActiveMessage(messageIndex) {
-        
-       /*      this.activeMessageDropdown = -1
-            this.showMessageInfo = -1 */
-
 
             this.friends[this.activeFriendIndex].messages.splice(messageIndex, 1);
 
+            if (this.friends[this.activeFriendIndex].messages.length===1){
 
-
-
-
+            }
             console.log("deleted", messageIndex, this.friends[this.activeFriendIndex].messages);
             console.log("lenght after delete", this.friends[this.activeFriendIndex].messages.length);
 
@@ -215,11 +211,6 @@ createApp({
 
     },
     mounted() {
-        //console.log(this.activeMessageDropdown);
-
-        /*   resetAllOnClick(){
-          
-          } */
-
+       
     },
 }).mount("#app")
