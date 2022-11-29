@@ -208,23 +208,24 @@ createApp({
             //console.log('click', e);
             console.log('click', e.target);
             //controllo negativo su classi dell'elemento cliccato 
-            console.log("E.target", !e.target.classList.contains('message-infos'));
-            console.log("E genitore", !e.target.closest('.message-infos'));
-            console.log("infos !==-1:", this.showMessageInfo !== -1);
+            console.log("E.target", !e.target.classList.contains('message-infos'), "E genitore", !e.target.closest('.message-infos'), "e target",!e.target.classList.contains('message-info-option'));
+            console.log("infos ", this.showMessageInfo)
             //*** reset showMessageInfos *******************
 
-            //se l'elemento target cliccato non contiene la classe"" che mi interesssa E non è figlio dell'elemento che mi interessa 
-            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos') && this.showMessageInfo !== -1) {
+            //se l'elemento target cliccato non contiene la classe"" che mi interessa E non è figlio dell'elemento che mi interessa 
+            //e l'elemento è attivo
+            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos')&& !e.target.classList.contains('message-info-option')) {
                 console.log("NASCONDI INFOS");
-
-
-                setTimeout(() => {
+ 
+                if (this.showMessageInfo !== -1) {
                     this.showMessageInfo = -1
                     console.log("infos after windows click", this.showMessageInfo)
-                }, 1000)
+                } 
+            }else{
+                console.log("stai fermo")
+            }
 
 
-            }/*
 
 
             //*** reset showMessageInfos ****************
@@ -233,21 +234,21 @@ createApp({
             /* if (!e.target.classList.contains('dropdown-message-options') && !e.target.closest('.dropdown-message-options')) {
                 console.log("CHIUDI DROPDOWN");
                 console.log("dropdown:", this.activeMessageDropdown);
-
+ 
                 if(this.activeMessageDropdown>-1){
                     this.activeMessageDropdown = -1
                     console.log("dropdown after windows click:", this.activeMessageDropdown)
                 }
-
+ 
                
-
+ 
             } */
 
         }
     },
     mounted() {
 
-        window.addEventListener('click', (e) => { this.onClickReset(e) });
+        window.addEventListener('click', (e) => { setTimeout(this.onClickReset(e), 1000) });
         /*         window.addEventListener('click', (e) => { setTimeout( this.onClickReset(e),300 )}); */
 
     },
