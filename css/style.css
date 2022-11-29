@@ -190,6 +190,3 @@ i {
 #emoticons i:hover {
     transform: scale(120%);
 }
-/* *:not([class="message-infos"]){
-    border:5px solid greenyellow
-} */

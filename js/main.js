@@ -178,8 +178,8 @@ createApp({
         /************* FUNZIONE SPECIFICA MOSTRA DETTAGLI MESSAGGIO ****************/
         showInfoActiveMessage(messageIndex) {
             this.showMessageInfo = messageIndex
+            setTimeout(()=>{this.activeMessageDropdown=-1},100)
             //console.log(messageIndex)
-
         },
         /************* FUNZIONE SPECIFICA CANCELLA MESSAGGIO ****************/
         deleteActiveMessage(messageIndex) {
@@ -205,51 +205,40 @@ createApp({
         onClickReset(e) {
 
             // Elemento che effettivamente è stato cliccato
-            //console.log('click', e);
             console.log('click', e.target);
             //controllo negativo su classi dell'elemento cliccato 
-            console.log("E.target", !e.target.classList.contains('message-infos'), "E genitore", !e.target.closest('.message-infos'), "e target",!e.target.classList.contains('message-info-option'));
-            console.log("infos ", this.showMessageInfo)
+            //console.log("E.target", !e.target.classList.contains('message-infos'), "E genitore", !e.target.closest('.message-infos'), "e target",!e.target.classList.contains('message-info-option'));
+            //console.log("infos ", this.showMessageInfo)
+
+
+            //*** reset SHOW MESSAGE INFOS *******************
+
+            //se l'elemento target cliccato non contiene la classe"" che mi interessa E non è figlio dell'elemento che mi interessa 
+            //e l'elemento è attivo
+            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos') && !e.target.classList.contains('message-info-option') && this.showMessageInfo !== -1) {
+                //console.log("NASCONDI INFOS");
+                this.showMessageInfo = -1
+                console.log("infos after windows click", this.showMessageInfo)
+            }
+            //*** RESET ACTIVE MESSAGE DROPDOWN ****************
+
+            //controllo negativo su classi dell'elemento cliccato 
+            //console.log("E.target", !e.target.classList.contains('dropdown-message-options'), "E genitore", !e.target.closest('.dropdown-message-options'));
+            //console.log("active dropdown", this.activeMessageDropdown)
             //*** reset showMessageInfos *******************
 
             //se l'elemento target cliccato non contiene la classe"" che mi interessa E non è figlio dell'elemento che mi interessa 
             //e l'elemento è attivo
-            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos')&& !e.target.classList.contains('message-info-option')) {
+            if (!e.target.classList.contains('dropdown-message-options') && !e.target.closest('.dropdown-message') && !e.target.closest('.dropdown-message-options') && this.activeMessageDropdown !== -1) {
                 console.log("NASCONDI INFOS");
- 
-                if (this.showMessageInfo !== -1) {
-                    this.showMessageInfo = -1
-                    console.log("infos after windows click", this.showMessageInfo)
-                } 
-            }else{
-                console.log("stai fermo")
+                this.activeMessageDropdown = -1
             }
-
-
-
-
-            //*** reset showMessageInfos ****************
-
-            //se l'elemento target cliccato non contiene la classe"" che mi interesssa E non è figlio dell'elemento che mi interessa 
-            /* if (!e.target.classList.contains('dropdown-message-options') && !e.target.closest('.dropdown-message-options')) {
-                console.log("CHIUDI DROPDOWN");
-                console.log("dropdown:", this.activeMessageDropdown);
- 
-                if(this.activeMessageDropdown>-1){
-                    this.activeMessageDropdown = -1
-                    console.log("dropdown after windows click:", this.activeMessageDropdown)
-                }
- 
-               
- 
-            } */
 
         }
     },
     mounted() {
 
-        window.addEventListener('click', (e) => { setTimeout(this.onClickReset(e), 1000) });
-        /*         window.addEventListener('click', (e) => { setTimeout( this.onClickReset(e),300 )}); */
+        window.addEventListener('click', (e) => { setTimeout(this.onClickReset(e), 300) });
 
     },
 }).mount("#app")
