@@ -147,9 +147,8 @@
 
                   <div class="card_info align-self-start">
                     <h5 class="text-capitalize m-0">
-                      Ultima chat attiva:{{}} </h5>
-                    <small class="dark-grey_color">
-                      ultimo messaggio: {{ }}</small>
+                     Nessuna chat Attiva</h5>
+                    <small class="dark-grey_color"> </small>
                   </div>
                 </div>
 
@@ -232,7 +231,7 @@
                     </div>
 
                     <!-- message infos  -->
-                    <div class="message-info position-absolute bg-light text-center p-4 border"
+                    <div class="message-infos position-absolute bg-light text-center p-4 border"
                         v-show="i === showMessageInfo">
                       <div>mittente:
                         {{activefriendMessages.status==='sent' ? friends[activeFriendIndex].name :'Marika Keller' }}

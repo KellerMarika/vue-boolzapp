@@ -150,7 +150,7 @@ i {
     opacity: 100;
 }
 
-.message-info {
+.message-infos {
     border: 1px double greenyellow;
     width: 300px;
     left: 50%;
@@ -190,3 +190,6 @@ i {
 #emoticons i:hover {
     transform: scale(120%);
 }
+/* *:not([class="message-infos"]){
+    border:5px solid greenyellow
+} */

@@ -61,7 +61,6 @@ createApp({
         checkActiveIndex(currentIndex) {
             //console.log(currentIndex);
             this.activeFriendIndex = currentIndex;
-            console.log(this.friends[this.activeFriendIndex].messages.length)
             //console.log(this.activeFriendIndex);
             //console.log("original messages", this.friends[this.activeFriendIndex].messages);
         },
@@ -172,28 +171,22 @@ createApp({
         /************* FUNZIONE SPECIFICA SET ACTIVE MESSAGE DROPDOWN ****************/
         setActiveMessageDropdown(messageIndex) {
             this.activeMessageDropdown = messageIndex
-            console.log("to delete:", this.activeMessageDropdown, this.friends[this.activeFriendIndex].messages);
-            console.log("lenght before delete", this.friends[this.activeFriendIndex].messages.length);
+            // console.log("to delete:", this.activeMessageDropdown, this.friends[this.activeFriendIndex].messages);
+            // console.log("lenght before delete", this.friends[this.activeFriendIndex].messages.length);
         },
 
         /************* FUNZIONE SPECIFICA MOSTRA DETTAGLI MESSAGGIO ****************/
         showInfoActiveMessage(messageIndex) {
             this.showMessageInfo = messageIndex
-            console.log(messageIndex)
+            //console.log(messageIndex)
 
         },
         /************* FUNZIONE SPECIFICA CANCELLA MESSAGGIO ****************/
         deleteActiveMessage(messageIndex) {
 
             this.friends[this.activeFriendIndex].messages.splice(messageIndex, 1);
-
-            if (this.friends[this.activeFriendIndex].messages.length===1){
-
-            }
-            console.log("deleted", messageIndex, this.friends[this.activeFriendIndex].messages);
-            console.log("lenght after delete", this.friends[this.activeFriendIndex].messages.length);
-
-
+            //console.log("deleted", messageIndex, this.friends[this.activeFriendIndex].messages);
+            //console.log("lenght after delete", this.friends[this.activeFriendIndex].messages.length);
         },
         setEmoticonsActive() {
             if (this.activeFriendIndex !== -1) {
@@ -207,10 +200,51 @@ createApp({
             this.newPersonalMessage += emoji.img
             console.log(this.newPersonalMessage)
 
-        }
-
+        },
     },
     mounted() {
-       
+
+        window.addEventListener('click', function (e) {
+            // Elemento che effettivamente è stato cliccato
+            //console.log('click', e);
+            console.log('click', e.target);
+            //controllo negativo su classi dell'elemento cliccato 
+            console.log("E.target", !e.target.classList.contains('dropdown-message-options'));
+            console.log("E genitore", !e.target.closest('.message-infos'))
+
+            //*** reset showMessageInfos *******************
+
+            //se l'elemento target cliccato non contiene la classe"" che mi interesssa E non è figlio dell'elemento che mi interessa 
+            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos')) {
+                console.log("CHIUDI DROPDOWN");
+                console.log("infos", this.showMessageInfo)
+
+
+                //this.showMessageInfo = -1
+               // console.log("infos", this.showMessageInfo)
+
+
+            }/*  else {
+                console.log("non fare nulla")
+            }*/
+
+            //*** reset showMessageInfos ****************
+
+            //se l'elemento target cliccato non contiene la classe"" che mi interesssa E non è figlio dell'elemento che mi interessa 
+            if (!e.target.classList.contains('dropdown-message-options') && !e.target.closest('.dropdown-message-options')) {
+                console.log("CHIUDI DROPDOWN");
+                console.log("dropdown:", this.activeMessageDropdown)
+
+
+                //this.activeMessageDropdown = -1
+                //console.log("dropdown:", this.activeMessageDropdown)
+
+                
+            }/*  else {
+                console.log("non fare nulla")
+            }*/
+
+
+        });
     },
 }).mount("#app")
