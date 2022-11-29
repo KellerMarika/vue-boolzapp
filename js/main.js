@@ -201,50 +201,54 @@ createApp({
             console.log(this.newPersonalMessage)
 
         },
-    },
-    mounted() {
 
-        window.addEventListener('click', function (e) {
+        onClickReset(e) {
+
             // Elemento che effettivamente è stato cliccato
             //console.log('click', e);
             console.log('click', e.target);
             //controllo negativo su classi dell'elemento cliccato 
-            console.log("E.target", !e.target.classList.contains('dropdown-message-options'));
-            console.log("E genitore", !e.target.closest('.message-infos'))
-
+            console.log("E.target", !e.target.classList.contains('message-infos'));
+            console.log("E genitore", !e.target.closest('.message-infos'));
+            console.log("infos !==-1:", this.showMessageInfo !== -1);
             //*** reset showMessageInfos *******************
 
             //se l'elemento target cliccato non contiene la classe"" che mi interesssa E non è figlio dell'elemento che mi interessa 
-            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos')) {
-                console.log("CHIUDI DROPDOWN");
-                console.log("infos", this.showMessageInfo)
+            if (!e.target.classList.contains('message-infos') && !e.target.closest('.message-infos') && this.showMessageInfo !== -1) {
+                console.log("NASCONDI INFOS");
 
 
-                //this.showMessageInfo = -1
-               // console.log("infos", this.showMessageInfo)
+                setTimeout(() => {
+                    this.showMessageInfo = -1
+                    console.log("infos after windows click", this.showMessageInfo)
+                }, 1000)
 
 
-            }/*  else {
-                console.log("non fare nulla")
-            }*/
+            }/*
+
 
             //*** reset showMessageInfos ****************
 
             //se l'elemento target cliccato non contiene la classe"" che mi interesssa E non è figlio dell'elemento che mi interessa 
-            if (!e.target.classList.contains('dropdown-message-options') && !e.target.closest('.dropdown-message-options')) {
+            /* if (!e.target.classList.contains('dropdown-message-options') && !e.target.closest('.dropdown-message-options')) {
                 console.log("CHIUDI DROPDOWN");
-                console.log("dropdown:", this.activeMessageDropdown)
+                console.log("dropdown:", this.activeMessageDropdown);
 
+                if(this.activeMessageDropdown>-1){
+                    this.activeMessageDropdown = -1
+                    console.log("dropdown after windows click:", this.activeMessageDropdown)
+                }
 
-                //this.activeMessageDropdown = -1
-                //console.log("dropdown:", this.activeMessageDropdown)
+               
 
-                
-            }/*  else {
-                console.log("non fare nulla")
-            }*/
+            } */
 
+        }
+    },
+    mounted() {
 
-        });
+        window.addEventListener('click', (e) => { this.onClickReset(e) });
+        /*         window.addEventListener('click', (e) => { setTimeout( this.onClickReset(e),300 )}); */
+
     },
 }).mount("#app")
