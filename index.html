@@ -115,16 +115,16 @@
                       {{friend.name}}</h5>
 
 
-                    <small v-if="friend.messages.length===0"
-                     class="subtitle"> nessun messaggio </small>
+                    <small v-if="!friend.messages.length"
+                        class="subtitle"> nessun messaggio </small>
 
                     <small v-else class="subtitle"> ultimo messaggio:
                       {{friend.messages[friend.messages.length-1].message}}</small>
                   </div>
 
-                  
-                  <small v-if="friend.messages.length===0"
-                  class="subtitle"> empty</small>
+
+                  <small v-if="!friend.messages.length"
+                      class="subtitle"></small>
 
                   <small v-else class="subtitle align-self-start">
                     <!-- finalmente qualcosa che mi piace -->
@@ -166,7 +166,7 @@
                     <h5 class="text-capitalize m-0">{{friends[activeFriendIndex].name}}</h5>
 
                     <small v-if="friends[activeFriendIndex].messages.length===0"
-                    class="subtitle"> empty</small>
+                        class="subtitle"> empty</small>
                     <small v-else class="dark-grey_color"> ultimo accesso oggi alle ore:
                       {{extractTimeFromDate(friends[activeFriendIndex].messages[friends[activeFriendIndex].messages.length-1].date)}}</small>
                   </div>
@@ -188,9 +188,9 @@
 
 
                   <!-- nessuna chart attiva -->
-                  <div v-if="activeFriendIndex === -1">
+                  <div v-if="activeFriendIndex === -1 || !friends[activeFriendIndex].messages.length ">
                   </div>
-                  
+
                   <!-- CHAT ATTIVA -->
                   <!-- messaggio -->
 
@@ -205,39 +205,34 @@
                         class="flex-fill d-flex flex-column align-items-end p-1 position-relative">
 
                       <!-- icona dropdown -->
-                      <i v-if="friends[activeFriendIndex].messages.length===0"></i>
-                      <i v-else class="dropdown-message fa-solid fa-chevron-down flex-fill"
+                      <!--   <i v-if="friends[activeFriendIndex].messages.length===0"></i> -->
+                      <i class="dropdown-message fa-solid fa-chevron-down flex-fill"
                           :class="{'active': i === activeMessageDropdown}"
                           @click="setActiveMessageDropdown(i)">
                       </i>
 
                       <!-- v-show (altrimenti si accavallano) -->
-                      <div v-if="friends[activeFriendIndex].messages.length===0"></div>
-                      <div v-else class="dropdown-message-options position-absolute  bg-light"
+
+                      <div class="dropdown-message-options position-absolute  bg-light"
                           v-show="i === activeMessageDropdown">
                         <!-- info option -->
-                        <div v-if="friends[activeFriendIndex].messages.length===0"></div>
-                        <div v-else class="message-info-option p-3"
+
+                        <div class="message-info-option p-3"
                             @click="showInfoActiveMessage(i)"> message info</div>
 
-
-
                         <!-- delete option -->
-                        <div v-if="friends[activeFriendIndex].messages.length===0"></div>
-                        <div v-else class="message-delete-option p-3"
+
+                        <div class="message-delete-option p-3"
                             @click="deleteActiveMessage(i)"> delete message</div>
                       </div>
                       <!-- devo aggiungere un event listner per rimuovere l'active -->
 
-                      <small v-if="friends[activeFriendIndex].messages.length===0"></small>
-                      <small v-else class=" pe-2">
+                      <small class=" pe-2">
                         {{extractTimeFromDate(activefriendMessages.date)}}</small>
                     </div>
 
                     <!-- message infos  -->
-                    <div v-if="friends[activeFriendIndex].messages.length===0"></div>
-                    <div v-else
-                        class="message-info position-absolute bg-light text-center p-4 border"
+                    <div class="message-info position-absolute bg-light text-center p-4 border"
                         v-show="i === showMessageInfo">
                       <div>mittente:
                         {{activefriendMessages.status==='sent' ? friends[activeFriendIndex].name :'Marika Keller' }}
