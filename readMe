@@ -1,3 +1,3 @@
-Milestone 1
- Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse
-Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto
+bug su funzione add new message.
+se dopo il click, cambio friend, il messaggio di risposta viene aggiunto nella nuova chat e nn nella precedente.
+per ovviare a questo problema, occorre salvare in una variabile interna alla funzione il valore dell'utente attivo.
